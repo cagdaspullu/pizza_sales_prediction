@@ -11,7 +11,7 @@ import os
 import json
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:veletibine07@localhost:5432/pizza_sales_v2'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'dialect+driver://username:password@host:port/database'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db.init_app(app)
 migrate = Migrate(app, db)

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>Website</title>
+<div align="left" class="navbar">
+    <a class="active" href="/">Home</a>
+    {% if session['username'] %}
+        <a href="/create_task/">New Task</a>
+    {% endif %}
+</div>
+<div align="right" class="dropdown">
+    <button class="dropbtn">Account Settings
+        <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+        {% if session['username'] %}
+            <a class="active" href="/profile/">Profile</a>
+            <a href="/logout/">Logout</a>
+        {% else %}
+            <a href="/login/">Login</a>
+            <a href="/register/">Register</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block body %}
+<div align="center" class="content">
+    <h1 style="text-align: center">Profile</h1>
+    {% for category, message in get_flashed_messages(with_categories=True) %}
+            <div class="alert-{{category}}">{{ message }}</div>
+    {% endfor %}
+    <table>
+        <tr>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Username</th>
+            <th>Gender</th>
+            <th>Register Date</th>
+        </tr>
+            <tr>
+                <td>{{ user.firstname }}</td>
+                <td>{{ user.lastname }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.gender }}</td>
+                <td>{{ user.register_date }}</td>
+            </tr>
+    </table>
+</div>
+{% endblock %}

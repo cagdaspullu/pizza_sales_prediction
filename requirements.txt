@@ -1,0 +1,13 @@
+Flask==1.1.2
+Flask-Sqlalchemy==2.4.4
+Flask-Migrate==2.5.3
+Flask-Login==0.5.0
+WTForms==2.3.3
+Flask-WTF==0.14.3
+email-validator==1.1.2
+Werkzeug==1.0.1
+statsmodels==0.12.1
+pandas==1.2.0
+numpy==1.19.5
+xlrd==2.0.1
+openpyxl==3.0.5

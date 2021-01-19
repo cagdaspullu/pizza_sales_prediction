@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>Website</title>
+<div align="left" class="navbar">
+    <a href="/">Home</a>
+    {% if session['username'] %}
+        <a class="active" href="/create_task/">New Task</a>
+    {% endif %}
+</div>
+<div align="right" class="dropdown">
+    <button class="dropbtn">Account Settings
+        <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+        {% if session['username'] %}
+            <a href="/profile/">Profile</a>
+            <a href="/logout/">Logout</a>
+        {% else %}
+            <a href="/login/">Login</a>
+            <a href="/register/">Register</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1 style="text-align: center">Create Task</h1>
+    <div align="center" class="form">
+        {% for category, message in get_flashed_messages(with_categories=True) %}
+            <div class="alert-{{category}}">{{ message }}</div>
+        {% endfor %}
+        {% from "includes/formhelpers.html" import render_field %}
+        <form action="/create_task/" method="POST">
+            <dl>
+                {{ render_field(form.name) }}
+                {{ render_field(form.file_path) }}
+                {{ render_field(form.step) }}
+            </dl>
+            <input type="submit" value="Create">
+        </form>
+    </div>
+</div>
+{% endblock %}

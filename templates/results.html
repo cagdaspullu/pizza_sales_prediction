@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>Website</title>
+<div align="left" class="navbar">
+    <a href="/">Home</a>
+    {% if session['username'] %}
+        <a href="/create_task/">New Task</a>
+    {% endif %}
+</div>
+<div align="right" class="dropdown">
+    <button class="dropbtn">Account Settings
+        <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+        {% if session['username'] %}
+            <a href="/profile/">Profile</a>
+            <a href="/logout/">Logout</a>
+        {% else %}
+            <a href="/login/">Login</a>
+            <a href="/register/">Register</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block body %}
+<div align="center" class="content">
+    <h1 style="text-align: center">Task {{ rbi.id }} Result</h1>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Started</th>
+            <th>Finished</th>
+            <th>Status</th>
+            <th>Result</th>
+        </tr>
+            <tr>
+                <td>{{ rbi.name }}</td>
+                <td>{{ rbi.started }}</td>
+                <td>{{ rbi.finished }}</td>
+                <td>{{ rbi.status }}</td>
+                <td>{{ rbi.result }}</td>
+            </tr>
+    </table>
+</div>
+{% endblock %}
